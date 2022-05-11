@@ -1,0 +1,43 @@
+<h3>Eksen:</h3>
+<p id="eksen"></p>
+
+<h3>Ivme:</h3>
+<p id="ivme"></p>
+
+<h3>Basinc:</h3>
+<p id="basinc"></p>
+
+<h3>GPS:</h3>
+<p id="gps"></p>
+
+<script>
+
+var getJSON = function(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+      var status = xhr.status;
+      if (status === 200) {
+        callback(null, xhr.response);
+      } else {
+        callback(status, xhr.response);
+      }
+    };
+    xhr.send();
+};
+
+getJSON('https://api.thingspeak.com/channels/1732006/feeds.json?api_key=PL4WEBTDXLETK8L0&results=1',
+function(err, data) {
+  if (err !== null) {
+    alert('Hurkusun basi dertte: ' + err + '\n lutfen webmasterinizla iletisime gecin');
+  } else {
+    document.getElementById("eksen").innerHTML = data.feeds[0].field1;
+    document.getElementById("ivme").innerHTML = data.feeds[0].field2;
+    document.getElementById("basinc").innerHTML = data.feeds[0].field3;
+    document.getElementById("gps").innerHTML = data.feeds[0].field4;
+
+  }
+});
+
+</script>
