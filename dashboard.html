@@ -14,10 +14,6 @@
 
 <script>
 
-function delay(time) {
-  return new Promise(resolve => setTimeout(resolve, time));
-}
-
 var getJSON = function(url, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
