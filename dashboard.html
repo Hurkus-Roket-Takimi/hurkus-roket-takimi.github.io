@@ -1,3 +1,5 @@
+<!-- <meta http-equiv="refresh" content="5"> -->
+
 <h3>Eksen:</h3>
 <p id="eksen"></p>
 
@@ -27,17 +29,25 @@ var getJSON = function(url, callback) {
     xhr.send();
 };
 
-getJSON('https://api.thingspeak.com/channels/1732006/feeds.json?api_key=PL4WEBTDXLETK8L0&results=1',
-function(err, data) {
-  if (err !== null) {
-    alert('Hurkusun basi dertte: ' + err + '\n lutfen webmasterinizla iletisime gecin');
-  } else {
-    document.getElementById("eksen").innerHTML = data.feeds[0].field1;
-    document.getElementById("ivme").innerHTML = data.feeds[0].field2;
-    document.getElementById("basinc").innerHTML = data.feeds[0].field3;
-    document.getElementById("gps").innerHTML = data.feeds[0].field4;
+function data() {
+  getJSON('https://api.thingspeak.com/channels/1732006/feeds.json?api_key=PL4WEBTDXLETK8L0&results=1',
+  function(err, data) {
+    if (err !== null) {
+      alert('Hurkusun basi dertte: ' + err + '\n lutfen webmasterinizla iletisime gecin');
+    } else {
+      document.getElementById("eksen").innerHTML = data.feeds[0].field1;
+      document.getElementById("ivme").innerHTML = data.feeds[0].field2;
+      document.getElementById("basinc").innerHTML = data.feeds[0].field3;
+      document.getElementById("gps").innerHTML = data.feeds[0].field4;
+    }
+  });
+}
 
-  }
-});
+setInterval(data, 1000);
 
 </script>
+
+<iframe width="500" height="250" src="https://thingspeak.com/channels/1732006/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+<iframe width="500" height="250" src="https://thingspeak.com/channels/1732006/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+<iframe width="500" height="250" src="https://thingspeak.com/channels/1732006/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+<iframe width="500" height="250" src="https://thingspeak.com/channels/1732006/charts/4?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
