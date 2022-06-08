@@ -14,6 +14,10 @@
 
 <script>
 
+function delay(time) {
+  return new Promise(resolve => setTimeout(resolve, time));
+}
+
 var getJSON = function(url, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
@@ -35,21 +39,47 @@ function data() {
     if (err !== null) {
       alert('Hurkusun basi dertte: ' + err + '\n lutfen webmasterinizla iletisime gecin');
     } else {
-      document.getElementById("eksen").innerHTML = data.feeds[0].field1;
-      document.getElementById("ivme").innerHTML = data.feeds[0].field2;
-      document.getElementById("basinc").innerHTML = data.feeds[0].field3;
-      document.getElementById("gps").innerHTML = data.feeds[0].field4;
+
+      let field1 = data.feeds[0].field1;
+      let field2 = data.feeds[0].field2;
+      let field3 = data.feeds[0].field3;
+      let field4 = data.feeds[0].field4;
+
+      if (field1 !== null) {
+        document.getElementById("eksen").innerHTML = field1;
+      }
+
+      if (field2 != null) {
+        document.getElementById("ivme").innerHTML = field2;
+      }
+
+      if (field3 !== null) {
+        document.getElementById("basinc").innerHTML = field3;
+      }
+
+      if (field4 != null) {
+        document.getElementById("gps").innerHTML = field4;
+      }
+
     }
   });
 }
 
+window.onload = function() {
+    var frameRefreshInterval = setInterval(function() {
+        document.getElementById("1").src = document.getElementById("1").src
+        document.getElementById("2").src = document.getElementById("2").src
+        document.getElementById("3").src = document.getElementById("3").src
+        document.getElementById("4").src = document.getElementById("4").src
+    }, 4000);
+}
+
 setInterval(data, 1000);
+
 
 </script>
 
-
-<!-- grafikler -->
-<iframe width="500" height="250" src="https://thingspeak.com/channels/1732006/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
-<iframe width="500" height="250" src="https://thingspeak.com/channels/1732006/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
-<iframe width="500" height="250" src="https://thingspeak.com/channels/1732006/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
-<iframe width="500" height="250" src="https://thingspeak.com/channels/1732006/charts/4?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+<iframe id="1" width="500" height="250" src="https://thingspeak.com/channels/1732006/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+<iframe id="2" width="500" height="250" src="https://thingspeak.com/channels/1732006/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+<iframe id="3" width="500" height="250" src="https://thingspeak.com/channels/1732006/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+<iframe id="4" width="500" height="250" src="https://thingspeak.com/channels/1732006/charts/4?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
