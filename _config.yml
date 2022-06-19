@@ -23,7 +23,7 @@ email: hurkusroket@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
         Hürkuş, Samsun Deneyap Atölyesinde eğitim görmekte olan 6 öğrenci tarafından kurulmuş roket takımıdır. Hürkuş Roket Takımı, Kızılkuzgun isimli roketiyle TEKNOFEST 2022'ye katılım sağlayacaktır. 
 baseurl: "/" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://hurkusroket.com" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: Hurkus-Roket-Takimi 
 
 # Build settings
