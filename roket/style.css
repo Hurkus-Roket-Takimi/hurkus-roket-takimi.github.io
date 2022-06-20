@@ -30,20 +30,12 @@
 
 h3 {
   padding-top: 1em;
-  color:#333;
+  color:#3F4750;
 }
 
 main {
   padding-top:100px;
-}
-
-h3 {
-  padding-top: 1em;
-  color:#333;
-}
-
-main {
-  padding-top:100px;
+  color:#D6E0CC
 }
 
 main.card {
@@ -53,11 +45,13 @@ main.card {
 .myDiv1 {
   text-align: left;
   display:inline;
+  color:#3F4750;
 }
 
 .myDiv2 {
   text-align: right;
   display:inline;
+  color:#3F4750;
 }
 
 #block_container
@@ -69,4 +63,20 @@ main.card {
 #frame
 {
   justify-content: center;
+}
+
+#main {
+  padding-top:100px;
+  color:#D6E0CC
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 115%;
+  height: 3%;
+  background-color: #F6F4F6;
+  color: #D1C7D1;
+  text-align: center;
 }

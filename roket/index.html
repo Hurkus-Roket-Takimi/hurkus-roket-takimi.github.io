@@ -12,8 +12,12 @@
 <script>
 
 var stopped = false;
-var frameRefreshInterval; 
+var delay = 6000;
+var frameRefreshInterval;
 var readKey = "PL4WEBTDXLETK8L0";
+
+window.onload = refreshFrame(delay);
+window.onload = refreshData(delay);
 
 var getJSON = function(url, callback) {
     var xhr = new XMLHttpRequest();
@@ -32,6 +36,24 @@ var getJSON = function(url, callback) {
 
 function log() {
 //
+}
+
+function newRefreshInterval() {
+  stop();
+  delay = prompt("Veri yenileme süresi (milisaniye)");
+
+  while (true) {
+    if (delay < 500) {
+      prompt("Lütfen veri yenileme süresi için 500 milisaniyenin üstünde bir değer girin");
+    }
+
+    else {
+      break;
+    }
+  }
+
+  refreshFrame(delay);
+  refreshData();
 }
 
 function newAPIKey() {
@@ -74,16 +96,19 @@ function data() {
   });
 }
 
-window.onload = function() {
+
+function refreshFrame(delay) {
     frameRefreshInterval = setInterval(function() {
         document.getElementById("1").src = document.getElementById("1").src
         document.getElementById("2").src = document.getElementById("2").src
         document.getElementById("3").src = document.getElementById("3").src
         document.getElementById("4").src = document.getElementById("4").src
-    }, 10000);
+    }, delay);
 }
 
-var dataRefreshInterval = setInterval(data, 10000);
+function refreshData(delay) {
+  var dataRefreshInterval = setInterval(data, delay);
+}
 
 function stop(){
   clearInterval(dataRefreshInterval);
@@ -92,15 +117,20 @@ function stop(){
 
 </script>
 </head>
-<body>
+<body style="background-color:#EDE9ED;">
 <!-- partial:index.partial.html -->
-<nav class="navbar navbar-dark bg-primary flex-md-nowapr fixed-top p-0 shadow">
+<nav style="background:#5A6672" class="navbar navbar-dark flex-md-nowapr fixed-top p-0 shadow">
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Kızılkuzgun</a>
   <form class="form">
-    <input class="form-control form-control-primary" type="search" placeholder="Search" aria-label="Search"></form>
-  <ul class="navbar-nav px-3">
-    <li class="nav-item text-nowarp">
+    <input class="form-control form-control-primary" type="search" placeholder="Hürkuş Roket Takımı" aria-label="Search"></form>
+  <ul class="navbar-nav px-1">
+    <li class="nav-item text-nowrap">
       <a class="nav-link" href="javascript:newAPIKey()">New API Key</a>
+    </li>
+  </ul>
+  <ul class="navbar-nav px-2">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="javascript:newRefreshInterval()">Refresh</a>
     </li>
   </ul>
 </nav>
@@ -108,7 +138,7 @@ function stop(){
 <div class="container-fluid">
   <div class="row">
     <!-- Sidebar --->
-    <div class="col-md-2 bg-light d-md-block sidebar">
+    <div style="background: #E3DDE3" class="col-md-2 d-md-block sidebar">
       <div class="left-sidebar">
         <ul class="nav flex-column sidebar-nav">
           <li class="nav-item">
@@ -140,7 +170,7 @@ function stop(){
     </div>
 
     <!--Main element-->
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <main role="main" style="background: #EDE9ED" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 
 <div id="block_container">
 
@@ -148,29 +178,35 @@ function stop(){
 <h3>Eksen:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</h3>
 <p id="eksen"></p>
 
-<h3>Ivme:</h3>
+<h3>İvme:</h3>
 <p id="ivme"></p>
 </div>
 
 <div class="myDiv2">
-<h3>Basinc:</h3>
+<h3>Basınç:</h3>
 <p id="basinc"></p>
 
 <h3>GPS:</h3>
 <p id="gps"></p>
 </div>
 
+<!-- <div class="footer">
+  <p style="align:center;">2022 Hürkuş - All rights reserved.</p>
+  </div> -->
+
 </div>
 
 <div id="block_container">
-<iframe id="1" width="500" height="250" src="https://thingspeak.com/channels/1732006/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
-<iframe id="2" width="500" height="250" src="https://thingspeak.com/channels/1732006/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+<iframe id="1" width="500" height="250" src="https://thingspeak.com/channels/1732006/charts/1?bgcolor=%23EBE9EC&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+<iframe id="2" width="500" height="250" src="https://thingspeak.com/channels/1732006/charts/2?bgcolor=%23EBE9EC&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
 </div>
 
 <div id="block_container">
-<iframe id="3" width="500" height="250" src="https://thingspeak.com/channels/1732006/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
-<iframe id="4" width="500" height="250" src="https://thingspeak.com/channels/1732006/charts/4?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+<iframe id="3" width="500" height="250" src="https://thingspeak.com/channels/1732006/charts/3?bgcolor=%23EBE9EC&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+<iframe id="4" width="500" height="250" src="https://thingspeak.com/channels/1732006/charts/4?bgcolor=%23EBE9EC&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
 </div>
+
+
 
 </main>
 <!-- partial -->
