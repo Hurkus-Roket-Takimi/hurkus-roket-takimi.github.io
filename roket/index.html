@@ -15,6 +15,12 @@ var stopped = false;
 var delay = 6000;
 var frameRefreshInterval;
 var readKey = "PL4WEBTDXLETK8L0";
+const p = window.location.protocol;
+
+if (p != "https:") {
+   window.location.protocol = "https:";
+   window.location.reload();
+}
 
 window.onload = refreshFrame(delay);
 window.onload = refreshData(delay);
